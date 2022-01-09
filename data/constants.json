@@ -1,0 +1,10 @@
+{
+  "TIMERS": {
+    "short": 1000,
+    "medium": 3000,
+    "large": 5000
+  },
+  "WEB_INTERACTIONS": {
+    "elementsToCreate": 6
+  }
+}
