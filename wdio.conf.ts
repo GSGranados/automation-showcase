@@ -56,6 +56,7 @@ export const config: WebdriverIO.Config = {
       //
       browserName: "chrome",
       acceptInsecureCerts: true,
+      timeouts: { implicit: 15000, pageLoad: 20000, script: 30000 },
       // If outputDir is provided WebdriverIO can capture driver session logs
       // it is possible to configure which logTypes to include/exclude.
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -93,7 +94,7 @@ export const config: WebdriverIO.Config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "http://localhost",
+  baseUrl: "https://www.google.com",
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -158,6 +159,7 @@ export const config: WebdriverIO.Config = {
     timeout: 60000,
     // <boolean> Enable this config to treat undefined definitions as warnings.
     ignoreUndefinedDefinitions: false,
+    retry: 0,
   },
 
   //
@@ -227,8 +229,16 @@ export const config: WebdriverIO.Config = {
    * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
    * @param {Object}                 context  Cucumber World object
    */
-  // beforeScenario: function (world, context) {
-  // },
+  beforeScenario: function (world, context) {
+    let worldArr = world.pickle.name.split(/:/);
+    //@ts-ignore
+    if (worldArr.length > 0) browser.config.testid = worldArr[0];
+    //@ts-ignore
+    if (!browser.config.testid)
+      throw Error(
+        `Error obtaining the test ID for the current scenario: ${world.pickle.name}`
+      );
+  },
   /**
    *
    * Runs before a Cucumber Step.
