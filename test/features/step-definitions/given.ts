@@ -7,7 +7,7 @@ Given(
     await browser.pause(constants.TIMERS.medium);
     const searchInput = await $('input[name="q"]');
     await searchInput.setValue(searchItem);
-    await browser.pause(constants.TIMERS.medium);
+    await browser.pause(constants.TIMERS.short);
     await browser.keys("Enter");
   }
 );

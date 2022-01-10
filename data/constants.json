@@ -5,6 +5,15 @@
     "large": 5000
   },
   "WEB_INTERACTIONS": {
-    "elementsToCreate": 6
+    "elementsToCreate": 6,
+    "dropdownText": "Please select an option",
+    "dropdownOption": "Option 2",
+    "login_username": "tomsmith",
+    "login_password": "SuperSecretPassword!",
+    "login_success": "You logged into a secure area!",
+    "iFrame_text": "This is a test value...",
+    "upload_path": "data/test-files/dummy.txt",
+    "alert_text": "I am a JS prompt",
+    "result_text": "You entered:"
   }
 }
