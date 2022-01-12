@@ -1,7 +1,7 @@
 import { Then } from "@wdio/cucumber-framework";
 import chai from "chai";
 import * as constants from "../../../data/constants.json";
-//theInternetBaseURL
+import EcommercePage from "../../page-objects/Ecommerce.page";
 Then(
   /^Navigate through various links and test some web interactions$/,
   async function () {
@@ -152,5 +152,24 @@ Then(
         .to.equal(`${constants.WEB_INTERACTIONS.result_text} ${sendText}`);
       await browser.pause(constants.TIMERS.medium);
     }
+  }
+);
+
+Then(
+  /^Start adding (.*) products to the cart$/,
+  async function (numberOfProducts) {
+    EcommercePage.addProductsToCart(this.testid, numberOfProducts);
+    await browser.pause(constants.TIMERS.short);
+    EcommercePage.proceedToCheckout(this.testid);
+    await browser.pause(constants.TIMERS.short);
+    EcommercePage.filloutCheckoutForm(
+      this.testid,
+      process.env.FIRSTNAME,
+      process.env.LASTNAME,
+      process.env.ZIP
+    );
+    await browser.pause(constants.TIMERS.large);
+    EcommercePage.verifyingSummary(this.testid);
+    await browser.pause(constants.TIMERS.large);
   }
 );
