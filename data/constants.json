@@ -15,5 +15,8 @@
     "upload_path": "data/test-files/dummy.txt",
     "alert_text": "I am a JS prompt",
     "result_text": "You entered:"
+  },
+  "API_PLACEHOLDERS": {
+    "GET_USERS": "/users"
   }
 }
