@@ -111,7 +111,7 @@ allure serve
 
 And this will load the overview dashboard with all the general information about our scripts.
 
-[! Page Objects](./assets/allure_dashboard.png)
+[!Allure Reports](./assets/allure_dashboard.png)
 
 ##### Considerations
 
